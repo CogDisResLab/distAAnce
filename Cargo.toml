@@ -1,5 +1,5 @@
 [package]
-name = "distAAnce"
+name = "distance_aa"
 version ="1.0.0-alpha.1"
 edition = "2021"
 rust-version = "1.67.1"
@@ -13,13 +13,13 @@ categories = ["command-line-utilities", "science", "web-programming::api-server"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
-name = "distAAnce_lib"
-path = "src/distAAnce_lib/lib.rs"
+name = "distance_aa_lib"
+path = "src/distance_aa_lib/lib.rs"
 crate-type = ["lib"]
 
 [[bin]]
-name = "distAAnce"
-path = "src/distAAnce/main.rs"
+name = "distance_aa_cli"
+path = "src/distance_aa_cli/main.rs"
 
 [profile.dev]
 opt-level = 1
