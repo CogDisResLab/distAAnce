@@ -2,7 +2,7 @@
 name = "distance_aa"
 version ="1.0.0-alpha.1"
 edition = "2021"
-rust-version = "1.67.1"
+rust-version = "1.64.0"
 description = "A backend for the distAAnce web application."
 readme = "README.md"
 repository = "https://github.com/CogDisResLab/distAAnce"
