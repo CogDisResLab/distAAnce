@@ -90,3 +90,14 @@ repos:
     - id: fmt
     - id: cargo-check
     - id: clippy
+  - repo: local
+    hooks:
+    - id: cargo-audit
+      name: cargo-audit
+      entry: cargo audit
+      args:
+      - --quiet
+      pass_filenames: false
+      language: system
+      types: [rust]
+      stages: [commit]
