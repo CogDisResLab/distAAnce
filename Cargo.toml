@@ -34,6 +34,6 @@ codegen-units = 1
 actix-web = "4.3.1"
 anyhow = { version = "1.0.69", features = ["backtrace"] }
 clap = { version = "4.1.8", features = ["cargo", "debug", "env", "string", "unicode", "derive"] }
-dotenv = { version = "0.15.0", features = ["clap", "cli"] }
+dotenvy = { version = "0.15.6", features = ["clap", "cli"] }
 env_logger = "0.10.0"
 tokio = { version = "1.26.0", features = ["full"] }
