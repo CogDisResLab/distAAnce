@@ -1,10 +1,10 @@
 on:
   workflow_call:
     outputs:
-      new_version:
+      repo_new_version:
         description: 'The new version to release'
         value: ${{ jobs.semantic.outputs.new_release_version }}
-      new_release_published:
+      repo_new_release_published:
         description: 'Whether a new release was published'
         value: ${{ jobs.semantic.outputs.new_release_published }}
 
