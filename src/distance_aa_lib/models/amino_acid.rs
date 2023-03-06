@@ -56,15 +56,15 @@ pub struct AminoAcid {
     codon: Vec<String>,
 }
 
-#[allow(dead_code)]
 impl AminoAcid {
+    #[must_use]
     pub fn new(
         name: &str,
         short_name: &str,
         abbreviation: &str,
         side_chain: &str,
         molecular_weight: f64,
-        codon: Vec<String>,
+        codon: &[&str],
     ) -> Self {
         Self {
             name: name.to_string(),
@@ -72,38 +72,38 @@ impl AminoAcid {
             abbreviation: abbreviation.to_string(),
             side_chain: side_chain.to_string(),
             molecular_weight,
-            codon: codon.iter().map(|x| x.to_string()).collect(),
+            codon: codon.iter().map(ToString::to_string).collect(),
         }
     }
-
+    #[must_use]
     pub fn get_name(&self) -> String {
         self.name.clone()
     }
-
+    #[must_use]
     pub fn get_short_name(&self) -> String {
         self.short_name.clone()
     }
-
+    #[must_use]
     pub fn get_abbreviation(&self) -> String {
         self.abbreviation.clone()
     }
-
+    #[must_use]
     pub fn get_side_chain(&self) -> String {
         self.side_chain.clone()
     }
-
+    #[must_use]
     pub const fn get_molecular_weight(&self) -> f64 {
         self.molecular_weight
     }
-
+    #[must_use]
     pub fn get_codon(&self) -> Vec<String> {
         self.codon.clone()
     }
-
+    #[must_use]
     pub fn get_codon_string(&self) -> String {
         self.codon.join(", ")
     }
-
+    #[must_use]
     pub fn get_codon_count(&self) -> usize {
         self.codon.len()
     }
@@ -136,12 +136,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCU".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCU", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_name(), "Alanine");
     }
@@ -153,12 +148,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCU".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCU", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_short_name(), "Ala");
     }
@@ -170,12 +160,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCU".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCU", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_abbreviation(), "A");
     }
@@ -187,12 +172,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCU".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCU", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_side_chain(), "Nonpolar");
     }
@@ -204,12 +184,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCU".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCU", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_molecular_weight(), 89.09);
     }
@@ -221,12 +196,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCT".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCT", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_codon(), vec!["GCT", "GCC", "GCA", "GCG"]);
     }
@@ -238,12 +208,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCT".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCT", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_codon_string(), "GCT, GCC, GCA, GCG");
     }
@@ -255,12 +220,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCT".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCT", "GCC", "GCA", "GCG"],
         );
         assert_eq!(amino_acid.get_codon_count(), 4);
     }
@@ -273,12 +233,7 @@ mod tests {
             "A",
             "Nonpolar",
             89.09,
-            vec![
-                "GCT".to_string(),
-                "GCC".to_string(),
-                "GCA".to_string(),
-                "GCG".to_string(),
-            ],
+            &["GCT", "GCC", "GCA", "GCG"],
         );
         assert_eq!(
             format!("{}", amino_acid),
