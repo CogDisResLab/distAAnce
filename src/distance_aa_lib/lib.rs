@@ -54,12 +54,7 @@ pub fn distance_calculator() {
         .collect::<Vec<models::AminoAcid>>();
     println!("Hello, distAAnce!");
     println!("More Release Testing");
-    for aa in amino_acid_library {
-        println!(
-            "{} - {} ({})",
-            aa.get_name(),
-            aa.get_side_chain(),
-            aa.get_molecular_weight()
-        );
-    }
+    amino_acid_library.iter().for_each(|aa| {
+        println!("{}: {}", aa.get_name(), aa.get_side_chain());
+    });
 }

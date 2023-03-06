@@ -43,35 +43,16 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 use crate::models::AminoAcid;
+use std::fs;
 
 pub fn amino_acid_library() -> Vec<AminoAcid> {
-    let amino_acid_names = [
-        "Alanine",
-        "Arginine",
-        "Asparagine",
-        "Aspartic Acid",
-        "Cysteine",
-        "Glutamic Acid",
-        "Glutamine",
-        "Glycine",
-        "Histidine",
-        "Isoleucine",
-        "Leucine",
-        "Lysine",
-        "Methionine",
-        "Phenylalanine",
-        "Proline",
-        "Serine",
-        "Threonine",
-        "Tryptophan",
-        "Tyrosine",
-        "Valine",
-    ];
+    let mut all_amino_acids: Vec<AminoAcid> = Vec::new();
 
-    let all_amino_acids = amino_acid_names
-        .iter()
-        .map(|name| AminoAcid::new(name))
-        .collect::<Vec<AminoAcid>>();
-
+    if let Ok(data) = fs::read_to_string("src/distance_aa_lib/data/amino_acid_data.json") {
+        let amino_acids: Vec<AminoAcid> = serde_json::from_str(&data).unwrap();
+        all_amino_acids.extend(amino_acids);
+    } else {
+        panic!("Could not read amino acid data file");
+    }
     all_amino_acids
 }
