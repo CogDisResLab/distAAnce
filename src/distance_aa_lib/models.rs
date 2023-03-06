@@ -44,4 +44,4 @@
 
 mod amino_acid;
 
-pub(crate) use amino_acid::AminoAcid;
+pub use amino_acid::AminoAcid;

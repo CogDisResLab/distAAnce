@@ -44,6 +44,7 @@
 
 use serde::{Deserialize, Serialize};
 use std::fmt::{self, Display, Formatter};
+use std::string::ToString;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize, Clone)]
 pub struct AminoAcid {
@@ -57,9 +58,9 @@ pub struct AminoAcid {
 
 #[allow(dead_code)]
 impl AminoAcid {
-    pub fn new(name: &str) -> AminoAcid {
+    pub fn new(name: &str) -> Self {
         match name {
-            "Alanine" => AminoAcid {
+            "Alanine" => Self {
                 name: "Alanine".to_string(),
                 short_name: "Ala".to_string(),
                 abbreviation: "A".to_string(),
@@ -67,10 +68,10 @@ impl AminoAcid {
                 molecular_weight: 89.09,
                 codon: vec!["GCT", "GCC", "GCA", "GCG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Arginine" => AminoAcid {
+            "Arginine" => Self {
                 name: "Arginine".to_string(),
                 short_name: "Arg".to_string(),
                 abbreviation: "R".to_string(),
@@ -78,10 +79,10 @@ impl AminoAcid {
                 molecular_weight: 174.20,
                 codon: vec!["CGT", "CGC", "CGA", "CGG", "AGA", "AGG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Asparagine" => AminoAcid {
+            "Asparagine" => Self {
                 name: "Asparagine".to_string(),
                 short_name: "Asn".to_string(),
                 abbreviation: "N".to_string(),
@@ -89,10 +90,10 @@ impl AminoAcid {
                 molecular_weight: 132.12,
                 codon: vec!["AAT", "AAC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Aspartic Acid" => AminoAcid {
+            "Aspartic Acid" => Self {
                 name: "Aspartic Acid".to_string(),
                 short_name: "Asp".to_string(),
                 abbreviation: "Asp".to_string(),
@@ -100,10 +101,10 @@ impl AminoAcid {
                 molecular_weight: 133.10,
                 codon: vec!["GAU", "GAC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Cysteine" => AminoAcid {
+            "Cysteine" => Self {
                 name: "Cysteine".to_string(),
                 short_name: "Cys".to_string(),
                 abbreviation: "D".to_string(),
@@ -111,10 +112,10 @@ impl AminoAcid {
                 molecular_weight: 121.15,
                 codon: vec!["TGT", "TGC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Glutamic Acid" => AminoAcid {
+            "Glutamic Acid" => Self {
                 name: "Glutamic Acid".to_string(),
                 short_name: "Glu".to_string(),
                 abbreviation: "E".to_string(),
@@ -122,10 +123,10 @@ impl AminoAcid {
                 molecular_weight: 147.13,
                 codon: vec!["GAA", "GAG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Glutamine" => AminoAcid {
+            "Glutamine" => Self {
                 name: "Glutamine".to_string(),
                 short_name: "Gln".to_string(),
                 abbreviation: "Q".to_string(),
@@ -133,10 +134,10 @@ impl AminoAcid {
                 molecular_weight: 146.15,
                 codon: vec!["CAA", "CAG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Glycine" => AminoAcid {
+            "Glycine" => Self {
                 name: "Glycine".to_string(),
                 short_name: "Gly".to_string(),
                 abbreviation: "G".to_string(),
@@ -144,10 +145,10 @@ impl AminoAcid {
                 molecular_weight: 75.07,
                 codon: vec!["GGT", "GGC", "GGA", "GGG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Histidine" => AminoAcid {
+            "Histidine" => Self {
                 name: "Histidine".to_string(),
                 short_name: "His".to_string(),
                 abbreviation: "H".to_string(),
@@ -155,10 +156,10 @@ impl AminoAcid {
                 molecular_weight: 155.16,
                 codon: vec!["CAT", "CAC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Isoleucine" => AminoAcid {
+            "Isoleucine" => Self {
                 name: "Isoleucine".to_string(),
                 short_name: "Ile".to_string(),
                 abbreviation: "I".to_string(),
@@ -166,10 +167,10 @@ impl AminoAcid {
                 molecular_weight: 131.18,
                 codon: vec!["ATT", "ATC", "ATA"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Leucine" => AminoAcid {
+            "Leucine" => Self {
                 name: "Leucine".to_string(),
                 short_name: "Leu".to_string(),
                 abbreviation: "L".to_string(),
@@ -177,10 +178,10 @@ impl AminoAcid {
                 molecular_weight: 131.18,
                 codon: vec!["TTA", "CTT", "CTC", "CTG", "CTA"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Lysine" => AminoAcid {
+            "Lysine" => Self {
                 name: "Lysine".to_string(),
                 short_name: "Lys".to_string(),
                 abbreviation: "K".to_string(),
@@ -188,18 +189,18 @@ impl AminoAcid {
                 molecular_weight: 146.19,
                 codon: vec!["AAA", "AAG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Methionine" => AminoAcid {
+            "Methionine" => Self {
                 name: "Methionine".to_string(),
                 short_name: "Met".to_string(),
                 abbreviation: "M".to_string(),
                 side_chain: "Nonpolar".to_string(),
                 molecular_weight: 149.21,
-                codon: vec!["ATG"].into_iter().map(|s| s.to_string()).collect(),
+                codon: vec!["ATG"].into_iter().map(ToString::to_string).collect(),
             },
-            "Phenylalanine" => AminoAcid {
+            "Phenylalanine" => Self {
                 name: "Phenylalanine".to_string(),
                 short_name: "Phe".to_string(),
                 abbreviation: "F".to_string(),
@@ -207,10 +208,10 @@ impl AminoAcid {
                 molecular_weight: 165.19,
                 codon: vec!["TTT", "TTC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Proline" => AminoAcid {
+            "Proline" => Self {
                 name: "Proline".to_string(),
                 short_name: "Pro".to_string(),
                 abbreviation: "P".to_string(),
@@ -218,10 +219,10 @@ impl AminoAcid {
                 molecular_weight: 115.13,
                 codon: vec!["CCT", "CCC", "CCA", "CCG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Serine" => AminoAcid {
+            "Serine" => Self {
                 name: "Serine".to_string(),
                 short_name: "Ser".to_string(),
                 abbreviation: "S".to_string(),
@@ -229,10 +230,10 @@ impl AminoAcid {
                 molecular_weight: 105.09,
                 codon: vec!["TCT", "TCC", "TCA", "TCG", "AGT", "AGC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Threonine" => AminoAcid {
+            "Threonine" => Self {
                 name: "Threonine".to_string(),
                 short_name: "Thr".to_string(),
                 abbreviation: "T".to_string(),
@@ -240,18 +241,18 @@ impl AminoAcid {
                 molecular_weight: 119.12,
                 codon: vec!["ACT", "ACC", "ACA", "ACG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Tryptophan" => AminoAcid {
+            "Tryptophan" => Self {
                 name: "Tryptophan".to_string(),
                 short_name: "Trp".to_string(),
                 abbreviation: "W".to_string(),
                 side_chain: "Nonpolar".to_string(),
                 molecular_weight: 204.23,
-                codon: vec!["TGG"].into_iter().map(|s| s.to_string()).collect(),
+                codon: vec!["TGG"].into_iter().map(ToString::to_string).collect(),
             },
-            "Tyrosine" => AminoAcid {
+            "Tyrosine" => Self {
                 name: "Tyrosine".to_string(),
                 short_name: "Tyr".to_string(),
                 abbreviation: "Y".to_string(),
@@ -259,10 +260,10 @@ impl AminoAcid {
                 molecular_weight: 181.19,
                 codon: vec!["TAT", "TAC"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            "Valine" => AminoAcid {
+            "Valine" => Self {
                 name: "Valine".to_string(),
                 short_name: "Val".to_string(),
                 abbreviation: "V".to_string(),
@@ -270,16 +271,16 @@ impl AminoAcid {
                 molecular_weight: 117.15,
                 codon: vec!["GTT", "GTC", "GTA", "GTG"]
                     .into_iter()
-                    .map(|s| s.to_string())
+                    .map(ToString::to_string)
                     .collect(),
             },
-            _ => AminoAcid {
+            _ => Self {
                 name: "Unknown".to_string(),
                 short_name: "Unknown".to_string(),
                 abbreviation: "X".to_string(),
                 side_chain: "Unknown".to_string(),
                 molecular_weight: 0.0,
-                codon: vec!["---"].into_iter().map(|s| s.to_string()).collect(),
+                codon: vec!["---"].into_iter().map(ToString::to_string).collect(),
             },
         }
     }
@@ -300,7 +301,7 @@ impl AminoAcid {
         self.side_chain.clone()
     }
 
-    pub fn get_molecular_weight(&self) -> f64 {
+    pub const fn get_molecular_weight(&self) -> f64 {
         self.molecular_weight
     }
 
