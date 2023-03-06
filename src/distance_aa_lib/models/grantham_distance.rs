@@ -43,6 +43,7 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 use crate::models::AminoAcid;
+use fmt::{Display, Formatter};
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct GranthamDistance {
@@ -81,5 +82,38 @@ impl Default for GranthamDistance {
             second: AminoAcid::default(),
             distance: 0,
         }
+    }
+}
+
+impl Display for GranthamDistance {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "GranthamDistance {{ first: {}, second: {}, distance: {} }}",
+            self.first, self.second, self.distance
+        )
+    }
+}
+
+#[cfg(test)]
+
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_new() {
+        let grantham_distance =
+            GranthamDistance::new(AminoAcid::from("A"), AminoAcid::from("C"), 2);
+        assert_eq!(grantham_distance.get_first(), AminoAcid::from("A"));
+        assert_eq!(grantham_distance.get_second(), AminoAcid::from("C"));
+        assert_eq!(grantham_distance.get_distance(), 2);
+    }
+
+    #[test]
+    fn test_default() {
+        let grantham_distance = GranthamDistance::default();
+        assert_eq!(grantham_distance.get_first(), AminoAcid::default());
+        assert_eq!(grantham_distance.get_second(), AminoAcid::default());
+        assert_eq!(grantham_distance.get_distance(), 0);
     }
 }
