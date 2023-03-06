@@ -53,8 +53,6 @@ pub fn distance_calculator() {
         .into_iter()
         .filter(|aa| aa.get_side_chain() == "Nonpolar")
         .collect::<Vec<models::AminoAcid>>();
-    println!("Hello, distAAnce!");
-    println!("More Release Testing");
     amino_acid_library.iter().for_each(|aa| {
         println!("{}: {}", aa.get_name(), aa.get_side_chain());
     });
