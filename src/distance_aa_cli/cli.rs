@@ -42,13 +42,32 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-mod cli;
-
 use clap::Parser;
-use distance_aa_lib::distance_calculator;
 
-fn main() {
-    let args = cli::Args::parse();
-    println!("Starting server at {}:{}...", args.server, args.port);
-    distance_calculator();
+#[derive(Debug, Parser)]
+#[clap(author, about, version, long_about = None)]
+pub struct Args {
+    /// Bind Address
+    ///
+    /// This is the address that the server will bind to. This can be an IP address or a hostname.
+    /// This is set to default to 0.0.0.0, which will bind to all interfaces.
+    /// This can also be set using the environment variable SERVER.
+    #[clap(short, long, env, default_value = "0.0.0.0")]
+    pub server: String,
+
+    /// Port Number
+    ///
+    /// This is the port that the server will bind to. This is set to default to 8080.
+    /// This can also be set using the environment variable PORT.
+    #[clap(short, long, env, default_value = "8080")]
+    pub port: u16,
+
+    /// Log Level
+    ///
+    /// This is the log level that the server will use. This is set to default to INFO.
+    /// The available log levels are: OFF, ERROR, WARN, INFO, DEBUG, TRACE, and ALL.
+    ///
+    /// This can also be set using the environment variable LOGLEVEL.
+    #[clap(short, long, env, default_value = "INFO")]
+    pub loglevel: String,
 }
