@@ -59,10 +59,10 @@ async fn echo(req_body: String) -> impl Responder {
 
 #[get("/{query_acid}")]
 async fn amino_acid(query_acid: web::Path<(String,)>) -> impl Responder {
-    let selected: distance_aa_lib::AminoAcid = amino_acid_library()
+    let selected: AminoAcid = amino_acid_library()
         .into_iter()
         .find(|aa| aa.get_name() == query_acid.0)
-        .unwrap_or(AminoAcid::default());
+        .unwrap_or_default();
 
     HttpResponse::Ok()
         .content_type("application/json")
