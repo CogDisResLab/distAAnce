@@ -58,5 +58,5 @@ jobs:
               MINIFY: true
               RUSTTARGET: ${{ matrix.target }}
               ARCHIVE_TYPES: ${{ matrix.archive }}
-              ARCHIVE_NAME: distAAnce-CLI${{ env.RELEASE_VERSION }}${{matrix.platform}}
+              ARCHIVE_NAME: distance_aa_CLI${{ env.RELEASE_VERSION }}${{matrix.platform}}
               EXTRA_FILES: "README.md LICENSE"
