@@ -1,8 +1,8 @@
 [package]
-name = "distAAnce"
+name = "distance_aa"
 version ="1.0.0-alpha.1"
 edition = "2021"
-rust-version = "1.67.1"
+rust-version = "1.64.0"
 description = "A backend for the distAAnce web application."
 readme = "README.md"
 repository = "https://github.com/CogDisResLab/distAAnce"
@@ -13,13 +13,13 @@ categories = ["command-line-utilities", "science", "web-programming::api-server"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
-name = "distAAnce_lib"
-path = "src/distAAnce_lib/lib.rs"
+name = "distance_aa_lib"
+path = "src/distance_aa_lib/lib.rs"
 crate-type = ["lib"]
 
 [[bin]]
-name = "distAAnce"
-path = "src/distAAnce/main.rs"
+name = "distance_aa_cli"
+path = "src/distance_aa_cli/main.rs"
 
 [profile.dev]
 opt-level = 1
@@ -31,3 +31,11 @@ codegen-units = 1
 
 
 [dependencies]
+actix-web = "4.3.1"
+anyhow = { version = "1.0.69", features = ["backtrace"] }
+clap = { version = "4.1.8", features = ["cargo", "debug", "env", "string", "unicode", "derive"] }
+dotenvy = { version = "0.15.6", features = ["clap", "cli"] }
+env_logger = "0.10.0"
+serde = { version = "1.0.152", features = ["derive", "rc"] }
+serde_json = { version = "1.0.93", features = ["indexmap", "float_roundtrip", "arbitrary_precision", "preserve_order"] }
+tokio = { version = "1.26.0", features = ["full"] }
