@@ -42,8 +42,6 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-use distance_aa_lib::distance_calculator;
+mod amino_acid;
 
-fn main() {
-    distance_calculator();
-}
+pub(crate) use amino_acid::AminoAcid;

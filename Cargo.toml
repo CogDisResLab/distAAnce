@@ -36,4 +36,6 @@ anyhow = { version = "1.0.69", features = ["backtrace"] }
 clap = { version = "4.1.8", features = ["cargo", "debug", "env", "string", "unicode", "derive"] }
 dotenvy = { version = "0.15.6", features = ["clap", "cli"] }
 env_logger = "0.10.0"
+serde = { version = "1.0.152", features = ["derive", "rc"] }
+serde_json = { version = "1.0.93", features = ["indexmap", "float_roundtrip", "arbitrary_precision", "preserve_order"] }
 tokio = { version = "1.26.0", features = ["full"] }

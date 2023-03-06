@@ -42,8 +42,36 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-use distance_aa_lib::distance_calculator;
+use crate::models::AminoAcid;
 
-fn main() {
-    distance_calculator();
+pub fn amino_acid_library() -> Vec<AminoAcid> {
+    let amino_acid_names = [
+        "Alanine",
+        "Arginine",
+        "Asparagine",
+        "Aspartic Acid",
+        "Cysteine",
+        "Glutamic Acid",
+        "Glutamine",
+        "Glycine",
+        "Histidine",
+        "Isoleucine",
+        "Leucine",
+        "Lysine",
+        "Methionine",
+        "Phenylalanine",
+        "Proline",
+        "Serine",
+        "Threonine",
+        "Tryptophan",
+        "Tyrosine",
+        "Valine",
+    ];
+
+    let all_amino_acids = amino_acid_names
+        .iter()
+        .map(|name| AminoAcid::new(name))
+        .collect::<Vec<AminoAcid>>();
+
+    all_amino_acids
 }

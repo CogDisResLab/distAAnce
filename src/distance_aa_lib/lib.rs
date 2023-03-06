@@ -42,6 +42,24 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+mod data;
+mod models;
+
+use data::amino_acid_library;
+
 pub fn distance_calculator() {
-    todo!("To be implemented")
+    let amino_acid_library = amino_acid_library()
+        .into_iter()
+        .filter(|aa| aa.get_side_chain() == "Nonpolar")
+        .collect::<Vec<models::AminoAcid>>();
+    println!("Hello, distAAnce!");
+    println!("More Release Testing");
+    for aa in amino_acid_library {
+        println!(
+            "{} - {} ({})",
+            aa.get_name(),
+            aa.get_side_chain(),
+            aa.get_molecular_weight()
+        );
+    }
 }
