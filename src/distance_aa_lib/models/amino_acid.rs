@@ -124,6 +124,19 @@ impl Display for AminoAcid {
     }
 }
 
+impl Default for AminoAcid {
+    fn default() -> Self {
+        Self {
+            name: "?????".to_string(),
+            short_name: "???".to_string(),
+            abbreviation: "?".to_string(),
+            side_chain: "?????".to_string(),
+            molecular_weight: 0 as f64,
+            codon: vec!["".to_string()],
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
