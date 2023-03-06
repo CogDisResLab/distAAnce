@@ -42,13 +42,23 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+mod app;
 mod cli;
 
+use actix_web::App;
+use actix_web::HttpServer;
+use app::amino_acid;
+use app::echo;
+use app::index;
 use clap::Parser;
-use distance_aa_lib::distance_calculator;
+use std::io::Result;
+// use distance_aa_lib::distance_calculator;
 
-fn main() {
+#[actix_web::main]
+async fn main() -> Result<()> {
     let args = cli::Args::parse();
-    println!("Starting server at {}:{}...", args.server, args.port);
-    distance_calculator();
+    HttpServer::new(|| App::new().service(index).service(echo).service(amino_acid))
+        .bind((args.server, args.port))?
+        .run()
+        .await
 }

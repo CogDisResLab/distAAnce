@@ -42,20 +42,29 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-mod data;
-mod models;
+use actix_web::{get, post, web, HttpResponse, Responder};
+use distance_aa_lib::amino_acid_library;
 
-pub use data::amino_acid_library;
-pub use models::AminoAcid;
+#[get("/")]
+async fn index() -> impl Responder {
+    HttpResponse::Ok()
+        .content_type("text/html")
+        .body("Hello world!")
+}
 
-pub fn distance_calculator() {
-    let amino_acid_library = amino_acid_library()
+#[post("/echo")]
+async fn echo(req_body: String) -> impl Responder {
+    HttpResponse::Ok().content_type("text/html").body(req_body)
+}
+
+#[get("/{query_acid}")]
+async fn amino_acid(query_acid: web::Path<(String,)>) -> impl Responder {
+    let selected: distance_aa_lib::AminoAcid = amino_acid_library()
         .into_iter()
-        .filter(|aa| aa.get_side_chain() == "Nonpolar")
-        .collect::<Vec<models::AminoAcid>>();
-    println!("Hello, distAAnce!");
-    println!("More Release Testing");
-    amino_acid_library.iter().for_each(|aa| {
-        println!("{}: {}", aa.get_name(), aa.get_side_chain());
-    });
+        .find(|aa| aa.get_name() == query_acid.0)
+        .unwrap();
+
+    HttpResponse::Ok()
+        .content_type("application/json")
+        .body(serde_json::to_string(&selected).unwrap())
 }
