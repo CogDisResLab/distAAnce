@@ -43,7 +43,7 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 use actix_web::{get, post, web, HttpResponse, Responder};
-use distance_aa_lib::amino_acid_library;
+use distance_aa_lib::{amino_acid_library, AminoAcid};
 
 #[get("/")]
 async fn index() -> impl Responder {
@@ -62,7 +62,7 @@ async fn amino_acid(query_acid: web::Path<(String,)>) -> impl Responder {
     let selected: distance_aa_lib::AminoAcid = amino_acid_library()
         .into_iter()
         .find(|aa| aa.get_name() == query_acid.0)
-        .unwrap();
+        .unwrap_or(AminoAcid::default());
 
     HttpResponse::Ok()
         .content_type("application/json")
