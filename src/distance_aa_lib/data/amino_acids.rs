@@ -45,6 +45,7 @@
 use crate::models::AminoAcid;
 use std::fs;
 
+#[must_use]
 pub fn amino_acid_library() -> Vec<AminoAcid> {
     let mut all_amino_acids: Vec<AminoAcid> = Vec::new();
 
