@@ -1,6 +1,6 @@
 [package]
 name = "distance_aa"
-version = "1.0.0-alpha.2"
+version = "1.0.0-alpha.3"
 edition = "2021"
 rust-version = "1.64.0"
 description = "A backend for the distAAnce web application."
