@@ -42,70 +42,18 @@
 // * SOFTWARE.
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-use crate::models::AminoAcid;
-use serde::{Deserialize, Serialize};
-use std::fmt::{Display, Formatter};
+use crate::models::GranthamDistance;
+use std::fs;
 
-#[derive(Debug, PartialEq, Serialize, Deserialize, Default)]
-pub struct GranthamDistance {
-    first: AminoAcid,
-    second: AminoAcid,
-    distance: usize,
-}
+#[must_use]
+pub fn amino_acid_library() -> Vec<AminoAcid> {
+    let mut all_amino_acids: Vec<AminoAcid> = Vec::new();
 
-#[allow(dead_code)]
-impl GranthamDistance {
-    #[must_use]
-    pub fn new(first: AminoAcid, second: AminoAcid, distance: usize) -> Self {
-        Self {
-            first,
-            second,
-            distance,
-        }
+    if let Ok(data) = fs::read_to_string("src/distance_aa_lib/data/amino_acid_data.json") {
+        let amino_acids: Vec<AminoAcid> = serde_json::from_str(&data).unwrap();
+        all_amino_acids.extend(amino_acids);
+    } else {
+        panic!("Could not read amino acid data file");
     }
-    #[must_use]
-    pub fn get_first(&self) -> AminoAcid {
-        self.first.clone()
-    }
-    #[must_use]
-    pub fn get_second(&self) -> AminoAcid {
-        self.second.clone()
-    }
-    #[must_use]
-    pub const fn get_distance(&self) -> usize {
-        self.distance
-    }
-}
-
-impl Display for GranthamDistance {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "GranthamDistance {{ first: {}, second: {}, distance: {} }}",
-            self.first, self.second, self.distance
-        )
-    }
-}
-
-#[cfg(test)]
-
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_new() {
-        let grantham_distance =
-            GranthamDistance::new(AminoAcid::new("Alanine"), AminoAcid::new("Lysine"), 2);
-        assert_eq!(grantham_distance.get_first(), AminoAcid::new("Alanine"));
-        assert_eq!(grantham_distance.get_second(), AminoAcid::new("Lysine"));
-        assert_eq!(grantham_distance.get_distance(), 2);
-    }
-
-    #[test]
-    fn test_default() {
-        let grantham_distance = GranthamDistance::default();
-        assert_eq!(grantham_distance.get_first(), AminoAcid::default());
-        assert_eq!(grantham_distance.get_second(), AminoAcid::default());
-        assert_eq!(grantham_distance.get_distance(), 0);
-    }
+    all_amino_acids
 }

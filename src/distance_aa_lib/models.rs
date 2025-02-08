@@ -43,5 +43,8 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 mod amino_acid;
+mod grantham_distance;
 
 pub use amino_acid::AminoAcid;
+#[allow(unused_imports)]
+pub use grantham_distance::GranthamDistance;
